@@ -58,9 +58,10 @@ class Customer
     film_details = SqlRunner.run(sql, values)
     film_id = film_details[0]['id'].to_i
     film_price = film_details[0]['price'].to_i
-    if @funds > film_price
+    if @funds >= film_price
       @funds -= film_price
       Ticket.new({'customer_id' => @id, 'film_id' => film_id}).save
     end
   end
+
 end
