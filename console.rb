@@ -10,6 +10,10 @@ customer2 = Customer.new({'name' => 'Joe Satriani', 'funds' => 20})
 customer1.save
 customer2.save
 
+film1 = Film.new({'title' => 'Iron Man', 'price' => 3})
+film1.save
+
+
 customer1.funds = 15
 customer1.update()
 
