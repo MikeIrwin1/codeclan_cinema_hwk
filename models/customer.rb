@@ -51,4 +51,16 @@ class Customer
     films = SqlRunner.run(sql, values)
     return films.map {|film| Film.new(film)}
   end
+
+  def purchase_ticket(film)
+    sql = "SELECT films.id,films.price FROM films WHERE title = $1"
+    values = [film.title]
+    film_details = SqlRunner.run(sql, values)
+    film_id = film_details[0]['id'].to_i
+    film_price = film_details[0]['price'].to_i
+    if @funds > film_price
+      @funds -= film_price
+      Ticket.new({'customer_id' => @id, 'film_id' => film_id}).save
+    end
+  end
 end
