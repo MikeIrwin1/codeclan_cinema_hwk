@@ -64,4 +64,11 @@ class Customer
     end
   end
 
+  def number_of_tickets()
+    sql = "SELECT COUNT(customer_id) FROM tickets WHERE customer_id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    return result[0]['count'].to_i
+  end
+
 end
