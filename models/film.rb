@@ -63,11 +63,12 @@ class Film
     sql = "SELECT screening_id, COUNT(*)
     FROM tickets
     WHERE tickets.film_id = $1
-    GROUP BY tickets.screening_id"
+    GROUP BY tickets.screening_id
+    ORDER BY tickets.screening_id"
     values = [@id]
     screenings_count_hash = SqlRunner.run(sql, values)
     screenings_array = screenings_count_hash.map {|screenings| screenings}
-    new_array = screenings_array.map {|hash| hash.transform_values(&:to_i)}
+    most_viewed = screenings_array.first.transform_values(&:to_i)
     binding.pry
 
   end
