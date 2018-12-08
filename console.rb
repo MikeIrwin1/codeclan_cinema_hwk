@@ -35,6 +35,6 @@ ticket2.save
 ticket3.save
 
 
-film1.popular_time
+film1.popular_time()
 # binding.pry
 nil

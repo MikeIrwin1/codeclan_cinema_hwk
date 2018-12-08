@@ -13,7 +13,7 @@ class Screening
   end
 
   def save()
-    sql = "INSERT INTO screenings (film_id, show_times) VALUES ($1,$2) RETURNING id"
+    sql = "INSERT INTO screenings (film_id, show_time) VALUES ($1,$2) RETURNING id"
     values = [@film_id, @show_time]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end

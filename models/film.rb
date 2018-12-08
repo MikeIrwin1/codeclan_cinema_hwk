@@ -67,10 +67,12 @@ class Film
     ORDER BY tickets.screening_id"
     values = [@id]
     screenings_count_hash = SqlRunner.run(sql, values)
-    screenings_array = screenings_count_hash.map {|screenings| screenings}
-    most_viewed = screenings_array.first.transform_values(&:to_i)
+    screenings_array = screenings_count_hash.map {|screenings| screenings.values.first}
+    most_viewed_id = [screenings_array.first.to_i]
+    sql2 = "SELECT * FROM screenings WHERE id =$1"
+    show_time = SqlRunner.run(sql2, most_viewed_id).first
     binding.pry
-
+    return Screening.new(show_time)
   end
 
 end
