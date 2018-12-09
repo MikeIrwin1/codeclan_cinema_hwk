@@ -20,19 +20,12 @@ film1.save
 film2 = Film.new({'title' => 'Blade Runner', 'price' => 2})
 film2.save
 
-film1_screening1 = Screening.new({'show_time' => '20:30', 'film_id' => film1.id, 'available' => 20})
-film2_screening1 = Screening.new({'show_time' => '19:00', 'film_id' => film2.id, 'available' => 10})
-film1_screening2 = Screening.new({'show_time' => '19:00', 'film_id' => film1.id, 'available' => 5})
+film1_screening1 = Screening.new({'show_time' => '20:30', 'film_id' => film1.id, 'available' => 2})
+film2_screening1 = Screening.new({'show_time' => '19:00', 'film_id' => film2.id, 'available' => 5})
+film1_screening2 = Screening.new({'show_time' => '19:00', 'film_id' => film1.id, 'available' => 4})
 film1_screening1.save
 film2_screening1.save
 film1_screening2.save
-
-ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id, 'screening_id' => film1_screening1.id})
-ticket2 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id, 'screening_id' => film1_screening1.id})
-ticket3 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id, 'screening_id' => film1_screening2.id})
-ticket1.save
-ticket2.save
-ticket3.save
 
 customer1.purchase_ticket(film1_screening1)
 
