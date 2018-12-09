@@ -20,9 +20,9 @@ film1.save
 film2 = Film.new({'title' => 'Blade Runner', 'price' => 2})
 film2.save
 
-film1_screening1 = Screening.new({'show_time' => '20:30', 'film_id' => film1.id})
-film2_screening1 = Screening.new({'show_time' => '19:00', 'film_id' => film2.id})
-film1_screening2 = Screening.new({'show_time' => '19:00', 'film_id' => film1.id})
+film1_screening1 = Screening.new({'show_time' => '20:30', 'film_id' => film1.id, 'available' => 20})
+film2_screening1 = Screening.new({'show_time' => '19:00', 'film_id' => film2.id, 'available' => 10})
+film1_screening2 = Screening.new({'show_time' => '19:00', 'film_id' => film1.id, 'available' => 5})
 film1_screening1.save
 film2_screening1.save
 film1_screening2.save
@@ -34,7 +34,8 @@ ticket1.save
 ticket2.save
 ticket3.save
 
+customer1.purchase_ticket(film1_screening1)
 
 film1.popular_time()
-# binding.pry
+binding.pry
 nil

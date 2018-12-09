@@ -71,7 +71,6 @@ class Film
     most_viewed_id = [screenings_array.first.to_i]
     sql2 = "SELECT * FROM screenings WHERE id =$1"
     show_time = SqlRunner.run(sql2, most_viewed_id).first
-    binding.pry
     return Screening.new(show_time)
   end
 

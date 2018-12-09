@@ -59,11 +59,16 @@ class Customer
     film_id = film_details[0]['film_id'].to_i
     film_price = film_details[0]['price'].to_i
     screening_id =film_details[0]['id'].to_i
-    if @funds >= film_price
-      @funds -= film_price
-      Ticket.new({'customer_id' => @id, 'film_id' => film_id, 'screening_id' => screening_id}).save
+    if screening.available > 0
+      if @funds >= film_price
+        @funds -= film_price
+        Ticket.new({'customer_id' => @id, 'film_id' => film_id, 'screening_id' => screening_id}).save
+        screening.update
+      else
+        return "Not enough funds!"
+      end
     else
-      return "Not enough funds!"
+      return "There are no tickets for this screening available"
     end
   end
 
